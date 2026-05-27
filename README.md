@@ -69,6 +69,58 @@ For best results, use these dimensions:
 
 ## Deployment
 
+### Docker Deployment
+
+The application can be easily deployed using Docker. A Docker container hosts the website on port 8024.
+
+#### Prerequisites
+
+- Docker installed on your system
+- Docker Compose (optional, for easier deployment)
+
+#### Using Docker Compose (Recommended)
+
+```bash
+# Build and start the container
+docker-compose up -d
+
+# The website will be available at http://localhost:8024
+
+# Stop the container
+docker-compose down
+
+# View logs
+docker-compose logs -f
+```
+
+#### Using Docker Directly
+
+```bash
+# Build the Docker image
+docker build -t routeexit .
+
+# Run the container on port 8024
+docker run -d -p 8024:8024 --name routeexit-web routeexit
+
+# The website will be available at http://localhost:8024
+
+# Stop the container
+docker stop routeexit-web
+docker rm routeexit-web
+
+# View logs
+docker logs -f routeexit-web
+```
+
+#### Docker Configuration
+
+- **Image**: Multi-stage build using Node.js Alpine
+- **Port**: 8024 (configurable in docker-compose.yml)
+- **Server**: `serve` package for serving static files
+- **Health Check**: Enabled with 30-second intervals
+
+### Other Deployment Options
+
 The built site can be deployed to any static hosting service:
 
 - Vercel
