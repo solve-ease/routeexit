@@ -151,3 +151,58 @@ if (width >= 1024) {
 - **React** - UI framework
 - **Vite** - Build tool
 - **CSS3** - Styling
+
+## Docker Quick Start
+
+### Using Docker Compose (Recommended)
+
+Start the container with a single command:
+
+```bash
+docker compose up -d
+```
+
+The website will be accessible at `http://localhost:8024`
+
+To stop the container:
+
+```bash
+docker compose down
+```
+
+View logs:
+
+```bash
+docker compose logs -f
+```
+
+### Using Docker Directly
+
+Build the image:
+
+```bash
+docker build -t routeexit .
+```
+
+Run the container:
+
+```bash
+docker run -d -p 8024:8024 --name routeexit-web routeexit
+```
+
+Access at `http://localhost:8024`
+
+Stop and remove:
+
+```bash
+docker stop routeexit-web
+docker rm routeexit-web
+```
+
+### Image Details
+
+- **Base Image**: nginx:alpine (production-optimized)
+- **Build Stage**: node:20-alpine (for building)
+- **Port**: 8024
+- **Health Check**: Enabled (30-second intervals)
+- **File Size**: ~40MB (multi-stage build optimization)
